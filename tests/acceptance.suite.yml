@@ -11,11 +11,12 @@ modules:
         - WPDb
         - WPWebDriver
         - \Helper\Acceptance
-        - WPLoader
+        - WPFilesystem
         - WPCLI
+        - WPLoader
     config:
         WPDb:
-            dsn: '%TEST_SITE_DB_DSN%'
+            dsn: 'mysql:host=%TEST_SITE_DB_HOST%;dbname=%TEST_SITE_DB_NAME%'
             user: '%TEST_SITE_DB_USER%'
             password: '%TEST_SITE_DB_PASSWORD%'
             dump: 'tests/_data/dump.sql'
@@ -23,10 +24,15 @@ modules:
             populate: true
             # re-import the dump between tests; this means the test site database will be repopulated between the tests.
             cleanup: false
-            waitlock: 10
+            waitlock: 20
             url: '%TEST_SITE_WP_URL%'
             urlReplacement: true #replace the hardcoded dump URL with the one above
             tablePrefix: '%TEST_SITE_TABLE_PREFIX%'
+        WPBrowser:
+            url: '%TEST_SITE_WP_URL%'
+            adminUsername: '%TEST_SITE_ADMIN_USERNAME%'
+            adminPassword: '%TEST_SITE_ADMIN_PASSWORD%'
+            adminPath: '%TEST_SITE_WP_ADMIN_PATH%'
         WPWebDriver:
             url: '%TEST_SITE_WP_URL%'
             adminUsername: '%TEST_SITE_ADMIN_USERNAME%'
@@ -35,16 +41,18 @@ modules:
             host: '%CHROMEDRIVER_HOST%'
             port: '%CHROMEDRIVER_PORT%'
             browser: chrome
-        WPLoader:
-            wpRootFolder: "%WP_ROOT_FOLDER%"
-            dbName: "%TEST_SITE_DB_NAME%"
-            dbHost: "%TEST_SITE_DB_HOST%"
-            dbUser: "%TEST_SITE_DB_USER%"
-            dbPassword: "%TEST_SITE_DB_PASSWORD%"
-            tablePrefix: "%TEST_SITE_TABLE_PREFIX%"
-            domain: "%TEST_SITE_WP_DOMAIN%"
-            adminEmail: "%TEST_SITE_ADMIN_EMAIL%"
-            title: "Test site"
+        WPFilesystem:
+            wpRootFolder: '%WP_ROOT_FOLDER%'
         WPCLI:
-            path: "%WP_ROOT_FOLDER%"
+            path: '%WP_ROOT_FOLDER%'
             allow-root: true
+        WPLoader:
+            wpRootFolder: '%WP_ROOT_FOLDER%'
+            dbName: '%TEST_SITE_DB_NAME%'
+            dbHost: '%TEST_SITE_DB_HOST%'
+            dbUser: '%TEST_SITE_DB_USER%'
+            dbPassword: '%TEST_SITE_DB_PASSWORD%'
+            tablePrefix: '%TEST_SITE_TABLE_PREFIX%'
+            domain: '%TEST_SITE_WP_DOMAIN%'
+            adminEmail: '%TEST_SITE_ADMIN_EMAIL%'
+            title: 'Test site'
