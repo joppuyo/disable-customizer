@@ -15,6 +15,12 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.0
+          extensions: zip
+
       - name: Get Composer Cache Directory
         id: composer-cache
         run: |
