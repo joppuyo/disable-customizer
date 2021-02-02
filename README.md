@@ -1,5 +1,7 @@
 # Disable Customizer
 
+![Test](https://github.com/joppuyo/disable-customizer/workflows/Test/badge.svg)
+
 Completely disable Customizer on your WordPress site. Useful if you develop custom themes that don't use Customizer.
 
 The code is based on [Customizer Remove All Parts](https://github.com/parallelus/customizer-remove-all-parts) by Jesse Petersen and Andy Wilkerson.
