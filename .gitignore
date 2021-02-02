@@ -1,0 +1,4 @@
+/vendor
+/.env.testing
+/tests/_output/*.html
+/tests/_output/*.png
