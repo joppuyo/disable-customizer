@@ -13,6 +13,8 @@ if (!defined('ABSPATH')) {
 	exit();
 }
 
+require __DIR__ . '/vendor/autoload.php';
+
 /* Based on Customizer Remove All Parts plugin
  * (https://github.com/parallelus/customizer-remove-all-parts) by
  * Jesse Petersen and Andy Wilkerson, licensed under GNU GPLv2 or later
