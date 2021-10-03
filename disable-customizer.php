@@ -3,7 +3,7 @@
 /*
  * Plugin name: Disable Customizer
  * Description: Completely turn off customizer on your site
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Johannes Siipola
  * Author URI: https://siipo.la
  * Text Domain: disable-customizer
