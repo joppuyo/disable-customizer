@@ -30,6 +30,7 @@ class DisableCustomizer
 
 	public function init()
 	{
+        $this->init_update_checker();
 		add_filter(
 			'map_meta_cap',
 			[$this, 'remove_customize_capability'],
@@ -72,6 +73,16 @@ class DisableCustomizer
 			__('The Customizer is currently disabled.', 'disable-customizer')
 		);
 	}
+
+    function init_update_checker()
+    {
+        $update_checker = Puc_v4_Factory::buildUpdateChecker(
+            'https://github.com/joppuyo/disable-customizer',
+            __FILE__,
+            'disable-customizer'
+        );
+        $update_checker->getVcsApi()->enableReleaseAssets();
+    }
 }
 
 $disable_customizer = new DisableCustomizer();
