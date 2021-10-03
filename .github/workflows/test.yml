@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         include:
@@ -85,16 +85,6 @@ jobs:
           php-version: ${{ matrix.php_version }}
           extensions: zip
 
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
       - name: Validate composer.json and composer.lock
         run: composer validate
 
@@ -110,10 +100,38 @@ jobs:
       - name: Check running containers
         run: docker ps -a
 
+      - name: Wait until the server is up
+        run: npx wait-on http://localhost/wp-login.php --verbose --timeout 60000
+
+      - name: Fix permissions
+        run: >
+          docker exec
+          -w /var/www/html
+          disable-customizer_wordpress_1 bash
+          -c "sudo chown -R www-data:www-data /var/www/html && sudo chmod -R 775 /var/www/html"
+
       - name: Run test suite
-        run: |
-          npx wait-on http://localhost/wp-login.php --verbose --timeout 60000 && docker exec -w /var/www/html disable-customizer_wordpress_1 bash -c "sudo chown -R www-data:www-data /var/www/html && sudo chmod -R 775 /var/www/html"
-          npx wait-on http://localhost/wp-login.php --verbose --timeout 60000 && docker exec -w /var/www/html/wp-content/plugins/disable-customizer -e WP_ROOT_FOLDER -e TEST_SITE_WP_ADMIN_PATH -e TEST_SITE_DB_NAME -e TEST_SITE_DB_HOST -e TEST_SITE_DB_USER -e TEST_SITE_DB_PASSWORD -e TEST_SITE_DB_PASSWORD -e TEST_SITE_TABLE_PREFIX -e TEST_SITE_WP_URL -e TEST_SITE_WP_DOMAIN -e TEST_SITE_ADMIN_EMAIL -e TEST_SITE_ADMIN_USERNAME -e TEST_SITE_ADMIN_PASSWORD -e CHROMEDRIVER_HOST -e CHROMEDRIVER_PORT -e WP_VERSION disable-customizer_wordpress_1 bash -c './vendor/bin/codecept run acceptance --fail-fast --debug'
+        run: >
+          docker exec
+          -w /var/www/html/wp-content/plugins/disable-customizer
+          -e WP_ROOT_FOLDER
+          -e TEST_SITE_WP_ADMIN_PATH
+          -e TEST_SITE_DB_NAME
+          -e TEST_SITE_DB_HOST
+          -e TEST_SITE_DB_USER
+          -e TEST_SITE_DB_PASSWORD
+          -e TEST_SITE_DB_PASSWORD
+          -e TEST_SITE_TABLE_PREFIX
+          -e TEST_SITE_WP_URL
+          -e TEST_SITE_WP_DOMAIN
+          -e TEST_SITE_ADMIN_EMAIL
+          -e TEST_SITE_ADMIN_USERNAME
+          -e TEST_SITE_ADMIN_PASSWORD
+          -e CHROMEDRIVER_HOST
+          -e CHROMEDRIVER_PORT
+          -e WP_VERSION
+          disable-customizer_wordpress_1 bash
+          -c './vendor/bin/codecept run acceptance --fail-fast --debug'
         env:
           WP_ROOT_FOLDER: /var/www/html
           TEST_SITE_WP_ADMIN_PATH: /wp-admin
