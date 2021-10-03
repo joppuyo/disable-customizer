@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         include:
@@ -85,16 +85,6 @@ jobs:
           php-version: ${{ matrix.php_version }}
           extensions: zip
 
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
       - name: Validate composer.json and composer.lock
         run: composer validate
 
@@ -110,15 +100,15 @@ jobs:
       - name: Check running containers
         run: docker ps -a
 
+      - name: Wait until the server is up
+        run: npx wait-on http://localhost/wp-login.php --verbose --timeout 60000
+
       - name: Fix permissions
         run: >
           docker exec
           -w /var/www/html
           disable-customizer_wordpress_1 bash
           -c "sudo chown -R www-data:www-data /var/www/html && sudo chmod -R 775 /var/www/html"
-
-      - name: Wait until the server is up
-        run: npx wait-on http://localhost/wp-login.php --verbose --timeout 60000
 
       - name: Run test suite
         run: >
