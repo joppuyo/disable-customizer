@@ -2,7 +2,7 @@
     "name": "joppuyo/disable-customizer",
     "description": "Completely turn off customizer on your site",
     "require-dev": {
-        "lucatume/wp-browser": "^2.6",
+        "lucatume/wp-browser": "^3.0",
         "codeception/module-asserts": "^1.0",
         "codeception/module-phpbrowser": "^1.0",
         "codeception/module-webdriver": "^1.0",
