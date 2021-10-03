@@ -16,9 +16,20 @@ jobs:
       run: composer install --optimize-autoloader --no-dev
 
     - name: Release
-      run: |
-        mkdir -p ${{env.plugin-slug}}
-        rsync -av * ${{env.plugin-slug}} --exclude ${{env.plugin-slug}} --exclude node_modules --exclude .git --exclude .github --exclude .gitignore --exclude .editorconfig --exclude .prettierrc.js
+      run: >
+        mkdir -p ${{env.plugin-slug}} &&
+        rsync -av * ${{env.plugin-slug}}
+        --exclude ${{env.plugin-slug}}
+        --exclude node_modules
+        --exclude .git
+        --exclude .github
+        --exclude .gitignore
+        --exclude .editorconfig
+        --exclude codeception.dist.yml
+        --exclude Dockerfile
+        --exclude docker-compose.yml
+        --exclude tests
+        --exclude .prettierrc.js &&
         zip -r ${{env.plugin-slug}}.zip ${{env.plugin-slug}}
       
     - uses: actions/upload-artifact@master
