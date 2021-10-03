@@ -15,11 +15,6 @@
         "test-host": "chromedriver --whitelisted-ips='' --url-base=/wd/hub",
         "test": "vendor/bin/codecept run acceptance --fail-fast"
     },
-    "config": {
-        "platform": {
-            "php": "7.0"
-        }
-    },
     "require": {
         "wp-cli/wp-cli-bundle": "^2.5"
     }
