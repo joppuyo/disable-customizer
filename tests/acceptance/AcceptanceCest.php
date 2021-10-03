@@ -4,7 +4,7 @@ class AcceptanceCest
 {
     public function _before(AcceptanceTester $I)
     {
-        $I->cli(['core', 'update-db']);
+        # $I->cli(['core', 'update-db']);
         $I->loginAsAdmin();
     }
 
