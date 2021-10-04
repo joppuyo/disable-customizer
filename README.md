@@ -1,6 +1,7 @@
 # Disable Customizer
 
-![Test](https://github.com/joppuyo/disable-customizer/workflows/Test/badge.svg)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/joppuyo/disable-customizer/Build?logo=github)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/joppuyo/disable-customizer/Test?label=tests&logo=github)
 
 Completely disable Customizer on your WordPress site. Useful if you develop custom themes that don't use Customizer.
 
