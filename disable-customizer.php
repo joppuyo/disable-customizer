@@ -5,12 +5,12 @@
 // SPDX-FileCopyrightText: 2015 Jesse Petersen and Andy Wilkerson
 
 /*
- * Plugin name: Disable Customizer
+ * Plugin name: Customizer Disabler
  * Description: Completely turn off customizer on your site
  * Version: 1.2.0
  * Author: Johannes Siipola
  * Author URI: https://siipo.la
- * Text Domain: disable-customizer
+ * Text Domain: customizer-disabler
  */
 
 if (!defined('ABSPATH')) {
@@ -73,7 +73,7 @@ class DisableCustomizer
 	public function override_load_customizer_action()
 	{
 		wp_die(
-			__('The Customizer is currently disabled.', 'disable-customizer')
+			__('The Customizer is currently disabled.', 'customizer-disabler')
 		);
 	}
 

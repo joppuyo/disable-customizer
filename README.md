@@ -3,10 +3,10 @@ SPDX-FileCopyrightText: 2021 Johannes Siipola
 SPDX-License-Identifier: CC0-1.0
 -->
 
-# Disable Customizer
+# Customizer Disabler
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/joppuyo/disable-customizer/Build?logo=github)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/joppuyo/disable-customizer/Test?label=tests&logo=github)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/joppuyo/customizer-disabler/Build?logo=github)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/joppuyo/customizer-disabler/Test?label=tests&logo=github)
 
 Completely disable Customizer on your WordPress site. Useful if you develop custom themes that don't use Customizer.
 

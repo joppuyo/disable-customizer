@@ -5,7 +5,7 @@ name: Build
 
 on: [push]
 env:
-  plugin-slug: disable-customizer
+  plugin-slug: customizer-disabler
 
 jobs:
   build:

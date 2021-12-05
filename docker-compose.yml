@@ -35,7 +35,7 @@ services:
     volumes:
       - wordpress:/var/www/html
       # - ./wp-content:/var/www/html/wp-content
-      - ./:/var/www/html/wp-content/plugins/disable-customizer
+      - ./:/var/www/html/wp-content/plugins/customizer-disabler
 
   db:
     image: mysql:5.7

@@ -110,13 +110,13 @@ jobs:
         run: >
           docker exec
           -w /var/www/html
-          disable-customizer_wordpress_1 bash
+          customizer-disabler_wordpress_1 bash
           -c "sudo chown -R www-data:www-data /var/www/html && sudo chmod -R 775 /var/www/html"
 
       - name: Run test suite
         run: >
           docker exec
-          -w /var/www/html/wp-content/plugins/disable-customizer
+          -w /var/www/html/wp-content/plugins/customizer-disabler
           -e WP_ROOT_FOLDER
           -e TEST_SITE_WP_ADMIN_PATH
           -e TEST_SITE_DB_NAME
@@ -133,7 +133,7 @@ jobs:
           -e CHROMEDRIVER_HOST
           -e CHROMEDRIVER_PORT
           -e WP_VERSION
-          disable-customizer_wordpress_1 bash
+          customizer-disabler_wordpress_1 bash
           -c './vendor/bin/codecept run acceptance --fail-fast --debug'
         env:
           WP_ROOT_FOLDER: /var/www/html
