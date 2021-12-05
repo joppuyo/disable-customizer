@@ -24,6 +24,9 @@ The code is based on [Customizer Remove All Parts](https://github.com/parallelus
 
 ## Changelog
 
+### 1.2.0 (2021-12-05)
+* Feature: Release on wordpress.org
+
 ### 1.1.0 (2021-10-03)
 * Feature: Add update checker
 * Fix: Delete unnecessary files from archive
