@@ -21,7 +21,7 @@ jobs:
     - name: Release
       run: >
         mkdir -p ${{env.plugin-slug}} &&
-        rsync -av * ${{env.plugin-slug}}
+        rsync -av . ${{env.plugin-slug}}
         --exclude ${{env.plugin-slug}}
         --exclude node_modules
         --exclude .git
