@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2021 Johannes Siipola
+# SPDX-License-Identifier: CC0-1.0
+
 ARG wp_docker_tag
 
 FROM wordpress:$wp_docker_tag

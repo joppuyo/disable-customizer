@@ -1,9 +1,13 @@
 <?php
 
+// SPDX-License-Identifier: GPL-2.0-or-later
+// SPDX-FileCopyrightText: 2021 Johannes Siipola
+// SPDX-FileCopyrightText: 2015 Jesse Petersen and Andy Wilkerson
+
 /*
  * Plugin name: Disable Customizer
  * Description: Completely turn off customizer on your site
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Johannes Siipola
  * Author URI: https://siipo.la
  * Text Domain: disable-customizer
@@ -30,7 +34,6 @@ class DisableCustomizer
 
 	public function init()
 	{
-        $this->init_update_checker();
 		add_filter(
 			'map_meta_cap',
 			[$this, 'remove_customize_capability'],
@@ -74,15 +77,6 @@ class DisableCustomizer
 		);
 	}
 
-    function init_update_checker()
-    {
-        $update_checker = Puc_v4_Factory::buildUpdateChecker(
-            'https://github.com/joppuyo/disable-customizer',
-            __FILE__,
-            'disable-customizer'
-        );
-        $update_checker->getVcsApi()->enableReleaseAssets();
-    }
 }
 
 $disable_customizer = new DisableCustomizer();

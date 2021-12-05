@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2021 Johannes Siipola
+SPDX-License-Identifier: CC0-1.0
+-->
+
 # Disable Customizer
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/joppuyo/disable-customizer/Build?logo=github)
